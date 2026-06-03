@@ -288,7 +288,7 @@
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">How WASH Works</h2>
-      <figure class="figure-block">
+      <figure class="figure-block method-figure">
         <img src="static/images/main-figure.png" alt="Overview of WASH: outputs from multiple watermarked models are averaged into an ensemble distribution, a token is sampled, and fluency-aware routing resynchronises heterogeneous tokenisers." loading="lazy"/>
         <figcaption>
           <strong>Overview of WASH.</strong> At each step, the outputs of multiple independently watermarked
@@ -321,29 +321,24 @@
         </figcaption>
       </figure>
 
-      <div class="columns is-variable is-5 result-tables">
-        <div class="column is-half">
-          <figure class="figure-block table-card">
-            <img src="static/images/result_removal.png" alt="Table: native-detector watermark removal results with final-text rewrite attacks, reported as TPR at 5% FPR, where lower is better. WASH (N=5) matches or beats prior attacks across DIPMark, KGW, AAR, ITS-Edit and Exp-Edit." loading="lazy"/>
-            <figcaption>
-              <strong>Watermark removal.</strong> Native-detector TPR@5%FPR (lower is better). WASH sharply
-              reduces detection rates from the watermarked baseline across all five schemes, performing on par
-              with the strongest dedicated removal attacks.
-            </figcaption>
-          </figure>
-        </div>
-        <div class="column is-half">
-          <figure class="figure-block table-card">
-            <img src="static/images/result_quality.png" alt="Table: comparison with final-text rewriting on GSM8K and WritingBench, with runtime normalised to the watermarked baseline. WASH (N=5) achieves the best accuracy and score at a fraction of the runtime of competing rewriting attacks." loading="lazy"/>
-            <figcaption>
-              <strong>Quality &amp; runtime.</strong> Accuracy on GSM8K and writing score on WritingBench, with
-              runtime normalised to the watermarked baseline (higher quality / lower runtime are better). WASH
-              achieves the highest quality on both benchmarks while adding far less runtime overhead than the
-              other removal methods.
-            </figcaption>
-          </figure>
-        </div>
-      </div>
+      <figure class="figure-block result-table">
+        <img src="static/images/result_removal.png" alt="Table: native-detector watermark removal results with final-text rewrite attacks, reported as TPR at 5% FPR, where lower is better. WASH (N=5) matches or beats prior attacks across DIPMark, KGW, AAR, ITS-Edit and Exp-Edit." loading="lazy"/>
+        <figcaption>
+          <strong>Watermark removal.</strong> Native-detector TPR@5%FPR (lower is better). WASH sharply
+          reduces detection rates from the watermarked baseline across all five schemes, performing on par
+          with the strongest dedicated removal attacks.
+        </figcaption>
+      </figure>
+
+      <figure class="figure-block result-table">
+        <img src="static/images/result_quality.png" alt="Table: comparison with final-text rewriting on GSM8K and WritingBench, with runtime normalised to the watermarked baseline. WASH (N=5) achieves the best accuracy and score at a fraction of the runtime of competing rewriting attacks." loading="lazy"/>
+        <figcaption>
+          <strong>Quality &amp; runtime.</strong> Accuracy on GSM8K and writing score on WritingBench, with
+          runtime normalised to the watermarked baseline (higher quality / lower runtime are better). WASH
+          achieves the highest quality on both benchmarks while adding far less runtime overhead than the
+          other removal methods.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
