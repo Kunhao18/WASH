@@ -1,0 +1,38 @@
+{
+  "_comment": "WASH attack configuration. Set each model_path to a local HF model directory or hub id. 'anchor_model'/'anchor_watermarks' name the watermarked model whose signal the WASH blend removes; the other models dilute it. Set 'is_instruct': true on a model to apply its chat template (base models use false). Add or remove models freely (1+ models). Watermark params below are the published defaults.",
+  "vocab_config_path": "./vocab/shared.json",
+  "anchor_model": "Llama",
+  "anchor_watermarks": ["kgw"],
+  "models": {
+    "Llama": {
+      "model_path": "/path/to/Llama-3.1-8B",
+      "device": "cuda:0",
+      "is_instruct": false,
+      "watermarks": {
+        "kgw": {
+          "hash_key": 15485863,
+          "scheme": "additive",
+          "gamma": 0.5,
+          "delta": 2.0,
+          "prefix_length": 4
+        }
+      }
+    },
+    "Qwen": {
+      "model_path": "/path/to/Qwen3-8B",
+      "device": "cuda:1",
+      "is_instruct": false,
+      "watermarks": {
+        "unwatermarked": {}
+      }
+    },
+    "Ministral": {
+      "model_path": "/path/to/Ministral-8B",
+      "device": "cuda:2",
+      "is_instruct": false,
+      "watermarks": {
+        "unwatermarked": {}
+      }
+    }
+  }
+}

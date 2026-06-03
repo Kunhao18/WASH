@@ -1,0 +1,12 @@
+# Python
+**/__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Pipeline artifacts
+vocab/
+logs/
+results/

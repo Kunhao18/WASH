@@ -1,0 +1,19 @@
+watermark-ensemble (WASH)
+
+This project includes watermark and detector implementations adapted from
+MarkLLM: An Open-Source Toolkit for LLM Watermarking (THU-BPM), licensed under
+the Apache License, Version 2.0.
+    https://github.com/THU-BPM/MarkLLM
+
+The individual watermarking algorithms reproduced here originate from their
+respective papers:
+  * KGW       — Kirchenbauer et al., "A Watermark for Large Language Models"
+  * DIP       — Wu et al., "DiPmark: A Stealthy, Efficient and Resilient Watermark"
+  * AAR       — Aaronson, "Watermarking of Large Language Models" (Gumbel/EXP)
+  * KTH / ITS — Kuditipudi et al., "Robust Distortion-free Watermarks for
+                Language Models" (corresponding to MarkLLM EXP / EXPEdit)
+  * Waterbag  — multi-key KGW variant
+
+The native detectors are reproductions of the above methods and are provided so
+that the effect of the WASH attack can be verified. They are not contributions
+of this work.

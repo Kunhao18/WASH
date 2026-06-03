@@ -1,0 +1,47 @@
+{
+  "_comment": "Reference config listing every supported watermark and its published parameters for each model. Use it to copy parameter blocks into configs/wash.json. To RUN the WASH attack, keep one watermark on the anchor model and set the other models to {\"unwatermarked\": {}} (see configs/wash.json). Set each model_path to a real model first.",
+  "vocab_config_path": "./vocab/shared.json",
+  "anchor_model": "Llama",
+  "anchor_watermarks": ["kgw"],
+  "models": {
+    "Llama": {
+      "model_path": "/path/to/Llama-3.1-8B",
+      "device": "cuda:0",
+      "is_instruct": false,
+      "watermarks": {
+        "aar": { "hash_key": 15485863, "prefix_length": 4 },
+        "dip": { "key": 42, "alpha": 0.45, "prefix_length": 4 },
+        "kgw": { "hash_key": 15485863, "scheme": "additive", "gamma": 0.5, "delta": 2.0, "prefix_length": 4 },
+        "kth": { "key": 42, "keylen": 420, "prefix_length": 4 },
+        "its": { "key": 42, "keylen": 420, "prefix_length": 4 },
+        "waterbag": { "hash_key": 15485863, "prefix_length": 4, "gamma": 0.5, "delta": 2.0, "scheme": "additive", "keylen": 4 }
+      }
+    },
+    "Qwen": {
+      "model_path": "/path/to/Qwen3-8B",
+      "device": "cuda:1",
+      "is_instruct": false,
+      "watermarks": {
+        "aar": { "hash_key": 15485864, "prefix_length": 4 },
+        "dip": { "key": 43, "alpha": 0.45, "prefix_length": 4 },
+        "kgw": { "hash_key": 15485864, "scheme": "additive", "gamma": 0.5, "delta": 2.0, "prefix_length": 4 },
+        "kth": { "key": 43, "keylen": 420, "prefix_length": 4 },
+        "its": { "key": 43, "keylen": 420, "prefix_length": 4 },
+        "waterbag": { "hash_key": 15485864, "prefix_length": 4, "gamma": 0.5, "delta": 2.0, "scheme": "additive", "keylen": 4 }
+      }
+    },
+    "Ministral": {
+      "model_path": "/path/to/Ministral-8B",
+      "device": "cuda:2",
+      "is_instruct": false,
+      "watermarks": {
+        "aar": { "hash_key": 15485865, "prefix_length": 4 },
+        "dip": { "key": 44, "alpha": 0.45, "prefix_length": 4 },
+        "kgw": { "hash_key": 15485865, "scheme": "additive", "gamma": 0.5, "delta": 2.0, "prefix_length": 4 },
+        "kth": { "key": 44, "keylen": 420, "prefix_length": 4 },
+        "its": { "key": 44, "keylen": 420, "prefix_length": 4 },
+        "waterbag": { "hash_key": 15485865, "prefix_length": 4, "gamma": 0.5, "delta": 2.0, "scheme": "additive", "keylen": 4 }
+      }
+    }
+  }
+}
