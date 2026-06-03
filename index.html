@@ -233,17 +233,19 @@
 </section>
 
 
-<!-- Teaser figure (WASH method overview) -->
+<!-- Teaser figure (token-level ensembling effect) -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/main-figure.png" alt="Overview of WASH: outputs from multiple watermarked models are averaged into an ensemble distribution, a token is sampled, and fluency-aware routing resynchronises heterogeneous tokenisers." />
-      <h2 class="subtitle has-text-centered">
-        <strong>Overview of WASH.</strong> Outputs from multiple independently watermarked models are averaged
-        into a consensus <em>distribution ensemble</em>, cancelling their independent watermark perturbations.
-        When the sampled token is out of a model's shared vocabulary, <em>fluency-aware routing</em> commits to
-        a specialist model to complete the word, reconciling tokenisation differences across heterogeneous models.
-      </h2>
+      <figure class="figure-block">
+        <img src="static/images/figure1.png" alt="Probability distributions over the token space for unwatermarked models, individually watermarked models, and the watermark ensemble, showing that ensembling recovers the consensus distribution." />
+        <figcaption>
+          <strong>Token-level ensembling washes away watermarks.</strong> Each watermark pushes a model's
+          output distribution in its own direction <em>(middle)</em>. Averaging the watermarked models into an
+          <em>ensemble (right)</em> cancels these independent perturbations, recovering the original consensus
+          distribution <em>(left)</em> obtained from the unwatermarked models.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -281,32 +283,67 @@
 <!-- End paper abstract -->
 
 
+<!-- Method -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">How WASH Works</h2>
+      <figure class="figure-block">
+        <img src="static/images/main-figure.png" alt="Overview of WASH: outputs from multiple watermarked models are averaged into an ensemble distribution, a token is sampled, and fluency-aware routing resynchronises heterogeneous tokenisers." loading="lazy"/>
+        <figcaption>
+          <strong>Overview of WASH.</strong> At each step, the outputs of multiple independently watermarked
+          models are averaged into a consensus <em>distribution ensemble</em>, cancelling their independent
+          watermark perturbations before a token is sampled. When the sampled token falls outside the shared
+          vocabulary, <em>fluency-aware routing</em> commits to the specialist models to complete the current
+          word, reconciling tokenisation differences across heterogeneous models.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<!-- End method -->
+
+
 <!-- Results -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="title is-3 has-text-centered">Results</h2>
-      <!-- TODO: Add further result figures here as you export them from the paper into static/images/. -->
-      <figure class="image">
-        <img src="static/images/figure1.png" alt="Probability distributions over the token space for unwatermarked models, individually watermarked models, and the watermark ensemble, showing that ensembling recovers the consensus distribution." loading="lazy"/>
-      </figure>
-      <h2 class="subtitle has-text-centered" style="margin-top:1rem;">
-        <strong>Effect of Linear Ensembles.</strong> The ensemble average (<strong>right</strong>) neutralises the
-        independent watermark perturbations of the individual models (<strong>middle</strong>), effectively
-        recovering the original consensus distribution (<strong>left</strong>) that is obtained by averaging the
-        unwatermarked models.
-      </h2>
 
-      <figure class="image" style="margin-top:3rem;">
+      <figure class="figure-block">
         <img src="static/images/figure3.png" alt="Detection z-score versus ensemble size for a fixed base model, for independent models, and for a coordinated watermark, showing the watermark signal decays below the detection threshold as ensemble size grows." loading="lazy"/>
+        <figcaption>
+          <strong>Watermark signal decay under different ensemble configurations.</strong> Detection strength
+          (z-score) as the ensemble size <em>N</em> increases. <strong>(a)</strong> A fixed base model with
+          <em>N</em> independent watermark keys. <strong>(b)</strong> <em>N</em> independent models, each with
+          independent watermarks. <strong>(c)</strong> Three independent base models sharing the same coordinated
+          watermark: the signal persists, showing that coordination defeats averaging attacks.
+        </figcaption>
       </figure>
-      <h2 class="subtitle has-text-centered" style="margin-top:1rem;">
-        <strong>Watermark signal decay under different ensemble configurations.</strong> Detection strength
-        (z-score) as the ensemble size <em>N</em> increases. <strong>(a)</strong> A fixed base model with
-        <em>N</em> independent watermark keys. <strong>(b)</strong> <em>N</em> independent models, each with
-        independent watermarks. <strong>(c)</strong> Three independent base models sharing the same coordinated
-        watermark: the signal persists, showing that coordination defeats averaging attacks.
-      </h2>
+
+      <div class="columns is-variable is-5 result-tables">
+        <div class="column is-half">
+          <figure class="figure-block table-card">
+            <img src="static/images/result_removal.png" alt="Table: native-detector watermark removal results with final-text rewrite attacks, reported as TPR at 5% FPR, where lower is better. WASH (N=5) matches or beats prior attacks across DIPMark, KGW, AAR, ITS-Edit and Exp-Edit." loading="lazy"/>
+            <figcaption>
+              <strong>Watermark removal.</strong> Native-detector TPR@5%FPR (lower is better). WASH sharply
+              reduces detection rates from the watermarked baseline across all five schemes, performing on par
+              with the strongest dedicated removal attacks.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="column is-half">
+          <figure class="figure-block table-card">
+            <img src="static/images/result_quality.png" alt="Table: comparison with final-text rewriting on GSM8K and WritingBench, with runtime normalised to the watermarked baseline. WASH (N=5) achieves the best accuracy and score at a fraction of the runtime of competing rewriting attacks." loading="lazy"/>
+            <figcaption>
+              <strong>Quality &amp; runtime.</strong> Accuracy on GSM8K and writing score on WritingBench, with
+              runtime normalised to the watermarked baseline (higher quality / lower runtime are better). WASH
+              achieves the highest quality on both benchmarks while adding far less runtime overhead than the
+              other removal methods.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -328,7 +365,7 @@
   author    = {Wu, Zhihao and Gong, Gracia and Zhu, Qinglin and Chen, Yudong and Zhao, Runcong},
   booktitle = {Proceedings of the 43rd International Conference on Machine Learning},
   series    = {Proceedings of Machine Learning Research},
-  volume    = {306},
+  publisher = {PMLR},
   year      = {2026},
   url       = {https://arxiv.org/abs/2605.30501}
 }</code></pre>
